@@ -10,8 +10,13 @@ class Event extends Model
         'user_id',
         'title',
         'description',
+        'location',
         'capacity',
         'status',
-        'starts_at'    
+        'starts_at',
+    ];
+
+    protected $casts = [
+        'starts_at' => 'datetime',
     ];
 }

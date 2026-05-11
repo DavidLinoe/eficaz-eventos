@@ -2,66 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
-use Illuminate\Http\Request;
+use App\Services\EventService;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(private EventService $events)
+    {
+    }
+
     public function index()
     {
-        $events = Event::all();
+        $events = $this->events->list();
         return view("events", compact("events"));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StoreEventRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['user_id'] = Auth::id() ?? 1;
+
+        $this->events->create($data);
+        return redirect()->route('events.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit(Event $event)
     {
-        //
+        return view("eventEdit", compact("event"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $this->events->update($event, $request->validated());
+        return redirect()->route('events.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(Event $event)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $this->events->delete($event);
+        return redirect()->route('events.index');
     }
 }

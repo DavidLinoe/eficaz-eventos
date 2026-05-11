@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,7 +14,8 @@ Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('even
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
-Route::get('/registrations', function () {
-    return view('registrations');
-});
+Route::get('/events/{event}/subscribers', [RegistrationController::class, 'subscribers'])->name('events.subscribers');
+Route::post('/events/{event}/register', [RegistrationController::class, 'store'])->name('events.register');
+Route::delete('/events/{event}/register', [RegistrationController::class, 'destroy'])->name('events.unregister');
 
+Route::get('/registrations', [RegistrationController::class, 'index'])->name('registrations.index');

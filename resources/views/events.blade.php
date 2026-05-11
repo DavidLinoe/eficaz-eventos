@@ -58,7 +58,15 @@
                 @foreach ($events as $event)
                     <li class="flex items-center gap-3">
                         <span>Evento: {{ $event->title }} — {{ $event->starts_at?->format('d/m/Y H:i') }}</span>
+
+                        <form action="{{ route('events.register', $event) }}" method="POST">
+                            @csrf
+                            <button type="submit">inscrever-se</button>
+                        </form>
+
+                        <a href="{{ route('events.subscribers', $event) }}">ver inscritos</a>
                         <a href="{{ route('events.edit', $event) }}">editar</a>
+
                         <form action="{{ route('events.destroy', $event) }}" method="POST">
                             @csrf
                             @method('DELETE')

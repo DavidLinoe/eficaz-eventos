@@ -1,8 +1,8 @@
 <x-layout>
 
     <div class="flex justify-center items-center gap-5">
-        <a href="/events">Eventos</a>
-        <a href="/registrations">Inscrições</a>
+        <a href="{{ route('events.index') }}">Eventos</a>
+        <a href="{{ route('registrations.index') }}">Minhas Inscrições</a>
     </div>
 
 </x-layout>

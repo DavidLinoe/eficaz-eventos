@@ -19,6 +19,7 @@ class EventService
     public function update(Event $event, array $data): Event
     {
         $event->update($data);
+
         return $event;
     }
 

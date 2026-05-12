@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    public function __construct(private EventService $events)
-    {
-    }
+    public function __construct(private EventService $events) {}
 
     public function index()
     {
         $events = $this->events->list();
-        return view("events", compact("events"));
+
+        return view('events', compact('events'));
     }
 
     public function store(StoreEventRequest $request)
@@ -26,23 +25,26 @@ class EventController extends Controller
         $data['user_id'] = Auth::id() ?? 1;
 
         $this->events->create($data);
+
         return redirect()->route('events.index');
     }
 
     public function edit(Event $event)
     {
-        return view("eventEdit", compact("event"));
+        return view('eventEdit', compact('event'));
     }
 
     public function update(UpdateEventRequest $request, Event $event)
     {
         $this->events->update($event, $request->validated());
+
         return redirect()->route('events.index');
     }
 
     public function destroy(Event $event)
     {
         $this->events->delete($event);
+
         return redirect()->route('events.index');
     }
 }

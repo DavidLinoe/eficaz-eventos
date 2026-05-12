@@ -14,12 +14,12 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'location'    => ['required', 'string', 'max:255'],
-            'starts_at'   => ['required', 'date'],
-            'capacity'    => ['nullable', 'integer', 'min:1'],
-            'status'      => ['required', 'in:active,cancelled'],
+            'location' => ['required', 'string', 'max:255'],
+            'starts_at' => ['required', 'date'],
+            'capacity' => ['nullable', 'integer', 'min:1'],
+            'status' => ['required', 'in:active,cancelled'],
         ];
     }
 }

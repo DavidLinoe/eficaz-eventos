@@ -13,13 +13,13 @@ class EventSeeder extends Seeder
     public function run(): void
     {
         Event::create([
-            "user_id" => 1,
-            "title" => "Evento Teste",
-            "description" => "Descricao do Evento Teste",
-            "capacity" => 30,
-            "status" => "active",
-            "location"=> "Marilia",
-            "starts_at" => now(),
+            'user_id' => 1,
+            'title' => 'Evento Teste',
+            'description' => 'Descricao do Evento Teste',
+            'capacity' => 30,
+            'status' => 'active',
+            'location' => 'Marilia',
+            'starts_at' => now(),
 
         ]);
     }

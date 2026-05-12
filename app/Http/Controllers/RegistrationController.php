@@ -10,9 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationController extends Controller
 {
-    public function __construct(private RegistrationService $registrations)
-    {
-    }
+    public function __construct(private RegistrationService $registrations) {}
 
     public function index()
     {

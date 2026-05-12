@@ -13,10 +13,10 @@ class RegistrationSeeder extends Seeder
     public function run(): void
     {
         Registration::create([
-            "user_id" => 1,
-            "event_id" => 1,
-            "created_at" => now(),
-            "updated_at" => now(),
+            'user_id' => 1,
+            'event_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

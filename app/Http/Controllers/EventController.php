@@ -31,11 +31,15 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
+        $this->authorize('update', $event);
+
         return view('eventEdit', compact('event'));
     }
 
     public function update(UpdateEventRequest $request, Event $event)
     {
+        $this->authorize('update', $event);
+
         $this->events->update($event, $request->validated());
 
         return redirect()->route('events.index');
@@ -43,6 +47,8 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
+        $this->authorize('delete', $event);
+
         $this->events->delete($event);
 
         return redirect()->route('events.index');

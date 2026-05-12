@@ -65,15 +65,22 @@
                             <button type="submit">inscrever-se</button>
                         </form>
 
-                        <a href="{{ route('events.subscribers', $event) }}">ver inscritos</a>
-                        <a href="{{ route('events.edit', $event) }}">editar</a>
+                        @can('viewSubscribers', $event)
+                            <a href="{{ route('events.subscribers', $event) }}">ver inscritos</a>
+                        @endcan
 
-                        <form action="{{ route('events.destroy', $event) }}" method="POST"
-                            onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">excluir</button>
-                        </form>
+                        @can('update', $event)
+                            <a href="{{ route('events.edit', $event) }}">editar</a>
+                        @endcan
+
+                        @can('delete', $event)
+                            <form action="{{ route('events.destroy', $event) }}" method="POST"
+                                onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">excluir</button>
+                            </form>
+                        @endcan
                     </li>
                 @endforeach
             </ul>

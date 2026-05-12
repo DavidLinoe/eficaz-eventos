@@ -6,7 +6,6 @@ use App\Http\Requests\StoreRegistrationRequest;
 use App\Models\Event;
 use App\Services\RegistrationService;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationController extends Controller
 {
@@ -38,12 +37,7 @@ class RegistrationController extends Controller
 
     public function subscribers(Event $event)
     {
-        $userId = Auth::id();
-
-        // somente o criador do evento pode ver a lista
-        if ($event->user_id !== $userId) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
+        $this->authorize('viewSubscribers', $event);
 
         $subscribers = $this->registrations->listSubscribers($event);
 

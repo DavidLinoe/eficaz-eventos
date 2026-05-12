@@ -22,7 +22,8 @@
                             {{ $registration->event->title }} —
                             {{ $registration->event->starts_at?->format('d/m/Y H:i') }}
                         </span>
-                        <form action="{{ route('events.unregister', $registration->event) }}" method="POST">
+                        <form action="{{ route('events.unregister', $registration->event) }}" method="POST"
+                            onsubmit="return confirm('Deseja realmente cancelar esta inscrição?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit">cancelar inscrição</button>

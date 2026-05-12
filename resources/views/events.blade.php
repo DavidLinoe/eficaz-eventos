@@ -59,7 +59,8 @@
                     <li class="flex items-center gap-3">
                         <span>Evento: {{ $event->title }} — {{ $event->starts_at?->format('d/m/Y H:i') }}</span>
 
-                        <form action="{{ route('events.register', $event) }}" method="POST">
+                        <form action="{{ route('events.register', $event) }}" method="POST"
+                            onsubmit="return confirm('Confirmar inscrição neste evento?');">
                             @csrf
                             <button type="submit">inscrever-se</button>
                         </form>
@@ -67,7 +68,8 @@
                         <a href="{{ route('events.subscribers', $event) }}">ver inscritos</a>
                         <a href="{{ route('events.edit', $event) }}">editar</a>
 
-                        <form action="{{ route('events.destroy', $event) }}" method="POST">
+                        <form action="{{ route('events.destroy', $event) }}" method="POST"
+                            onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit">excluir</button>

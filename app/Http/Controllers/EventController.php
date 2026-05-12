@@ -22,7 +22,7 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $data = $request->validated();
-        $data['user_id'] = Auth::id() ?? 1;
+        $data['user_id'] = Auth::id();
 
         $this->events->create($data);
 

@@ -14,7 +14,7 @@ class RegistrationController extends Controller
 
     public function index()
     {
-        $userId = Auth::id() ?? 1;
+        $userId = Auth::id();
         $registrations = $this->registrations->listForUser($userId);
 
         return view('registrations', compact('registrations'));
@@ -22,7 +22,7 @@ class RegistrationController extends Controller
 
     public function store(StoreRegistrationRequest $request, Event $event)
     {
-        $userId = Auth::id() ?? 1;
+        $userId = Auth::id();
         $this->registrations->register($event, $userId);
 
         return redirect()->route('registrations.index');
@@ -30,7 +30,7 @@ class RegistrationController extends Controller
 
     public function destroy(Event $event)
     {
-        $userId = Auth::id() ?? 1;
+        $userId = Auth::id();
         $this->registrations->cancel($event, $userId);
 
         return redirect()->route('registrations.index');
@@ -38,7 +38,7 @@ class RegistrationController extends Controller
 
     public function subscribers(Event $event)
     {
-        $userId = Auth::id() ?? 1;
+        $userId = Auth::id();
 
         // somente o criador do evento pode ver a lista
         if ($event->user_id !== $userId) {

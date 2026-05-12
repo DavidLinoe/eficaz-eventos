@@ -24,8 +24,7 @@
             </label>
 
             <label class="flex gap-2">Descrição:
-                <textarea name="description">{{ old('description', $event->description) }}
-                </textarea>
+                <textarea name="description">{{ old('description', $event->description) }}</textarea>
             </label>
 
             <label class="flex gap-2">Local:
@@ -37,8 +36,8 @@
                     value="{{ old('starts_at', $event->starts_at?->format('Y-m-d\TH:i')) }}">
             </label>
 
-            <label class="flex gap-2">Capacidade: <input type="number" name="capacity"
-                    value="{{ old('capacity', $event->capacity) }}">
+            <label class="flex gap-2">Capacidade:
+                <input type="number" name="capacity" value="{{ old('capacity', $event->capacity) }}">
             </label>
 
             <label class="flex gap-2">Status:
@@ -46,7 +45,6 @@
                     <option value="active" @selected(old('status', $event->status) === 'active')>active</option>
                     <option value="cancelled" @selected(old('status', $event->status) === 'cancelled')>cancelled</option>
                 </select>
-
             </label>
 
             <div class="flex gap-3">
